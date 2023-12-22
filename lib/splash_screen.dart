@@ -21,7 +21,7 @@ class SplahScreen extends StatelessWidget {
               h: 120.h,
               w: 120.w,
             ),
-            // Hi Ali
+            // Say Me What do you do Now?
             /* SizedBox(
               height: 120.h,
               width: 120.w,
