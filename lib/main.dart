@@ -10,9 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplahScreen(),
+      home: SplahScreenx(),
+      // home: Scaffold(
+      // body: null,
+      // ),
     );
   }
 }

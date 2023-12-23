@@ -2,12 +2,11 @@ import 'package:center_system/utils/app_assets.dart';
 import 'package:center_system/utils/app_strings.dart';
 import 'package:center_system/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'utils/app_colors.dart';
 
-class SplahScreen extends StatelessWidget {
-  const SplahScreen({super.key});
+class SplahScreenx extends StatelessWidget {
+  const SplahScreenx({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,27 +15,17 @@ class SplahScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomImage(
+            const CustomImage(
               imgPath: AppAssets.appLogo,
-              h: 120.h,
-              w: 120.w,
-            ),
-            // Say Me What do you do Now?
-            /* SizedBox(
-              height: 120.h,
-              width: 120.w,
-              child: Image.asset(
-                AppAssets.appLogo,
-              ),
-            ), */
-            SizedBox(
-              height: 16.h,
+              h: 120,
+              w: 120,
             ),
             Text(
               AppStrings.chefApp,
               // 'Chef App',
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    color: AppColors.white,
+                    color: AppColors.black,
+                    fontWeight: FontWeight.bold,
                     fontSize: 30.0,
                   ),
             ),
