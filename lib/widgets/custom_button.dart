@@ -21,18 +21,19 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width!.w,
-      height: height!.h,
+      width: width!,
+      height: height!,
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(
           text,
           // 'English',
-          style: Theme.of(context).textTheme.displayLarge,
+          // style: Theme.of(context).textTheme.displayLarge,
         ),
-        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+        style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
               backgroundColor: MaterialStateProperty.all(
-                background ?? AppColors.primary,
+                const Color(0xff3D5CFF),
+                // background ?? AppColors.primary,
                 // AppColors.black,
               ),
             ),
