@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666856458652",
+    "project_id": "ems-app-a3d44",
+    "storage_bucket": "ems-app-a3d44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666856458652:android:d17874ff2c692d27832059",
+        "android_client_info": {
+          "package_name": "com.example.center_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-iXByx8ejQ9QmiiX9-xGX1dVIh_QmhRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
