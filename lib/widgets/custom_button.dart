@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -23,20 +20,25 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: width!,
       height: height!,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          // 'English',
-          // style: Theme.of(context).textTheme.displayLarge,
-        ),
-        style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-              backgroundColor: MaterialStateProperty.all(
-                const Color(0xff3D5CFF),
-                // background ?? AppColors.primary,
-                // AppColors.black,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          decoration: const BoxDecoration(
+              color: Color(0xff3D5CFF),
+              borderRadius: BorderRadius.all(Radius.circular(16))),
+          child: Center(
+            child: Text(
+              text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
               ),
+              // textAlign: TextAlign.center,
+              // style: Theme.of(context).textTheme.displayLarge,
             ),
+          ),
+        ),
       ),
     );
   }
