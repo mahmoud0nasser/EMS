@@ -5,7 +5,7 @@ import '../utils/app_colors.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.controller,
+    this.controller,
     this.hint,
     this.label,
     this.validate,
@@ -13,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
     this.icon,
     this.suffixIconOnPressed,
   });
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? hint;
   final String? label;
   final String? Function(String?)? validate;
@@ -37,11 +37,12 @@ class CustomTextFormField extends StatelessWidget {
         const SizedBox(height: 5),
         TextFormField(
           controller: controller,
-          cursorColor: AppColors.primary,
+          cursorColor: AppColors.grey,
           keyboardType: TextInputType.phone,
           validator: validate,
           obscureText: isPassword,
           decoration: InputDecoration(
+            suffixStyle: const TextStyle(color: Colors.black, fontSize: 18),
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xff858597)),
               borderRadius: BorderRadius.all(
@@ -64,7 +65,8 @@ class CustomTextFormField extends StatelessWidget {
               onPressed: suffixIconOnPressed,
               icon: Icon(
                 icon,
-                color: AppColors.primary,
+                size: 20,
+                // color: AppColors.primary,
               ),
             ),
           ),
