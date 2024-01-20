@@ -43,6 +43,12 @@ class CustomTextFormField extends StatelessWidget {
           obscureText: isPassword,
           decoration: InputDecoration(
             suffixStyle: const TextStyle(color: Colors.black, fontSize: 18),
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0xff858597)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xff858597)),
               borderRadius: BorderRadius.all(
