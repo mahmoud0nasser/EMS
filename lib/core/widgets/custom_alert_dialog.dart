@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_strings.dart';
 
-
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
     super.key,

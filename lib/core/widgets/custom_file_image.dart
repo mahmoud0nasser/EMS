@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:center_system/widgets/custom_image.dart';
+import 'package:center_system/core/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';

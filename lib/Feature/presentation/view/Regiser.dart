@@ -1,8 +1,10 @@
-// ignore_for_file: null_check_always_fails, unrelated_type_equality_checks
+// ignore_for_file: null_check_always_fails, unrelated_type_equality_checks, unused_local_variable
 
-import 'package:center_system/utils/app_colors.dart';
-import 'package:center_system/widgets/custom_button.dart';
-import 'package:center_system/widgets/custom_text_form_field.dart';
+import 'package:center_system/core/utils/app_colors.dart';
+import 'package:center_system/core/widgets/custom_button.dart';
+import 'package:center_system/core/widgets/custom_text_form_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -19,9 +21,15 @@ class _Register_ScreenState extends State<Register_Screen> {
   bool isPassTrue1 = true;
   bool isPassTrue2 = true;
   bool isFalse = false;
+  String Email = "";
+  String name = "";
+  String phone = "";
+  String FPhone = "";
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  String PassWord = "";
   // ignore: non_constant_identifier_names
   GlobalKey<FormState> FormKey = GlobalKey();
-  GlobalKey<FormState> PhoneKey = GlobalKey();
   FocusNode focusNode = FocusNode();
 
   @override
@@ -91,10 +99,11 @@ class _Register_ScreenState extends State<Register_Screen> {
                               return "هذا الحقل مطلوب";
                             } else if (value!.length < 3) {
                               return "يجب أن يكون هذا الحقل أكثر من 3 أحرف";
+                            } else {
+                              name = value;
+                              return null;
                             }
-                            return null;
                           },
-                          controller: TextEditingController(),
                         ),
                         const SizedBox(
                           height: 10,
@@ -119,10 +128,11 @@ class _Register_ScreenState extends State<Register_Screen> {
                           // key: PhoneKey,
                           validator: (value) {
                             if (value == "") {
-                              print(value);
                               return "هذا الحقل مطلوب";
+                            } else {
+                              phone = value!.completeNumber;
+                              return null;
                             }
-                            return null;
                           },
 
                           focusNode: focusNode,
@@ -141,12 +151,12 @@ class _Register_ScreenState extends State<Register_Screen> {
                           ),
 
                           // languageCode: "ar",
-                          onChanged: (phone) {
-                            print(phone.completeNumber);
-                          },
-                          onCountryChanged: (country) {
-                            print('Country changed to: ' + country.name);
-                          },
+                          // onChanged: (phone) {
+                          //   print(phone.completeNumber);
+                          // },
+                          // onCountryChanged: (country) {
+                          //   print('Country changed to: ' + country.name);
+                          // },
                         ),
 
                         CustomTextFormField(
@@ -155,13 +165,16 @@ class _Register_ScreenState extends State<Register_Screen> {
                           validate: (value) {
                             if (value! == "") {
                               return "هذا الحقل مطلوب";
-                            } else if (value.contains("@gmail.com") == false &&
-                                value.length > 10) {
-                              return "يرجى ادخال البريد بشكل صحيح";
                             }
-                            return null;
+                            // } else if (value.contains("@gmail.com") == false &&
+                            //     value.length > 10) {
+                            //   return "يرجى ادخال البريد بشكل صحيح";
+                            // }
+                            else {
+                              Email = value;
+                              return null;
+                            }
                           },
-                          controller: TextEditingController(),
                         ),
                         const SizedBox(
                           height: 10,
@@ -176,10 +189,12 @@ class _Register_ScreenState extends State<Register_Screen> {
                           validate: (value) {
                             if (value == "") {
                               return "هذا الحقل مطلوب";
-                            } else if (value!.length < 3) {
-                              return "يجب أن يكون هذا الحقل أكثر من 3 أحرف";
+                            } else if (value!.length < 8) {
+                              return "يجب أن يكون هذا الحقل أكثر من 8 أحرف";
+                            } else {
+                              PassWord = value;
+                              return null;
                             }
-                            return null;
                           },
                           isPassword: isPassTrue1,
                           hint: "كلمة السر",
@@ -197,8 +212,8 @@ class _Register_ScreenState extends State<Register_Screen> {
                           validate: (value) {
                             if (value == "") {
                               return "هذا الحقل مطلوب";
-                            } else if (value!.length < 3) {
-                              return "يجب أن يكون هذا الحقل أكثر من 3 أحرف";
+                            } else if (isPassTrue2 != isPassTrue1) {
+                              return "تأكد من ادخال كلمة السرالصحيحة";
                             }
                             return null;
                           },
@@ -292,8 +307,9 @@ class _Register_ScreenState extends State<Register_Screen> {
                           height: 5,
                         ),
                         IntlPhoneField(
-                          initialCountryCode: "EG", focusNode: focusNode,
-                          // focusNode: focusNode,
+                          keyboardType: TextInputType.phone,
+
+                          initialCountryCode: "EG",
                           decoration: InputDecoration(
                             hintText: 'رقم ولى الامر',
                             suffixIcon: IconButton(
@@ -314,8 +330,10 @@ class _Register_ScreenState extends State<Register_Screen> {
                           validator: (value) {
                             if (value == "") {
                               return "هذا الحقل مطلوب";
+                            } else {
+                              FPhone = value!.completeNumber;
+                              return null;
                             }
-                            return null;
                           },
                           onCountryChanged: (country) {
                             print('Country changed to: ' + country.name);
@@ -327,6 +345,7 @@ class _Register_ScreenState extends State<Register_Screen> {
                         Row(
                           children: [
                             Checkbox(
+                              // checkColor: Color(0xff3D5CFF),
                               value: isFalse,
                               onChanged: (value) {
                                 setState(() {
@@ -354,9 +373,41 @@ class _Register_ScreenState extends State<Register_Screen> {
                         ),
 
                         CustomButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (FormKey.currentState!.validate() && isFalse) {
-                              print("ok");
+                              try {
+                                UserCredential userCredential =
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                            email: Email.trim(),
+                                            password: PassWord.trim());
+                                try {
+                                  users
+                                      .add({
+                                        'name': name,
+                                        'phone': phone,
+                                        'Father phone': FPhone,
+                                        'department': dep,
+                                        'Email': Email, // John Doe
+                                        'Password': PassWord, // Stokes and Sons
+                                        // 42
+                                      })
+                                      .then((value) => print("User Added"))
+                                      .catchError((error) =>
+                                          print("Failed to add user: $error"));
+                                } on Exception catch (e) {
+                                  print(e);
+                                }
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'weak-password') {
+                                  print('The password provided is too weak.');
+                                } else if (e.code == 'email-already-in-use') {
+                                  print(
+                                      'The account already exists for that email.');
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
                             } else {
                               print("Please check");
                             }
@@ -370,15 +421,6 @@ class _Register_ScreenState extends State<Register_Screen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              "هل لديك حساب بالفعل ؟ ",
-                              // overflow: TextOverflow.clip,
-                              style: TextStyle(
-                                color: Color(0xff858597),
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
                             GestureDetector(
                               onTap: () {
                                 Navigator.pushReplacementNamed(context, null!);
@@ -391,6 +433,15 @@ class _Register_ScreenState extends State<Register_Screen> {
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
+                              ),
+                            ),
+                            const Text(
+                              " هل لديك حساب بالفعل؟ ",
+                              // overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                color: Color(0xff858597),
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
                               ),
                             ),
                           ],

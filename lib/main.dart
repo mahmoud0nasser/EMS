@@ -1,4 +1,4 @@
-import 'package:center_system/Regiser.dart';
+import 'package:center_system/Feature/presentation/view/Regiser.dart';
 import 'package:center_system/firebase_options.dart';
 import 'package:center_system/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';

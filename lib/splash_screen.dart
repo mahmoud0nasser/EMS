@@ -1,9 +1,9 @@
-import 'package:center_system/utils/app_assets.dart';
-import 'package:center_system/utils/app_strings.dart';
-import 'package:center_system/widgets/custom_image.dart';
+import 'package:center_system/core/utils/app_assets.dart';
+import 'package:center_system/core/utils/app_strings.dart';
+import 'package:center_system/core/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
-import 'utils/app_colors.dart';
+import 'core/utils/app_colors.dart';
 
 class SplahScreenx extends StatelessWidget {
   const SplahScreenx({super.key});

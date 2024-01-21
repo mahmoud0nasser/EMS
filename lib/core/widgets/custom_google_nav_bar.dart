@@ -4,7 +4,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../utils/app_colors.dart';
 
-
 class CustomGoogleNavWidget extends StatelessWidget {
   const CustomGoogleNavWidget({
     super.key,
